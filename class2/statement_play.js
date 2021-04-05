@@ -84,7 +84,7 @@ function statement(invoice, plays) {
   function renderPlainText(data, invoice, plays) {
     let result = `Statement for ${data.customer}\n`;
 
-    for (let aPerformance of invoice.performances) {
+    for (let aPerformance of data.performances) {
       result += ` ${playFor(aPerformance).name}: ${usd(
         amountfor(aPerformance)
       )} (${aPerformance.audience} seats)\n`;
@@ -96,8 +96,9 @@ function statement(invoice, plays) {
   }
   function statement(invoice, plays) {
     const statementData = {}
-    statementData.customer = invoice.customer
-    return renderPlainText(statmentData, invoice, plays)
+    statementData.customer = invoice.customer;
+    statementData.performances = invoice.performances;
+    return renderPlainText(statmentData, plays)
   }
 }
 
