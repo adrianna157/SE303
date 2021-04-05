@@ -98,6 +98,8 @@ function statement(invoice, plays) {
     const statementData = {}
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerferomance);
+    statementData.totalAmount = totalAmount(statementData);
+    statementData.totalVolumeCredits = totalVolumeCredits(statementData);
     return renderPlainText(statmentData, plays)
   }
   
