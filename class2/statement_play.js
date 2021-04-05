@@ -29,7 +29,7 @@ function statement(invoice, plays) {
 
   function amountFor(aPerformance) {
     let result = 0;
-    switch (playFor(aPerformance).type) {
+    switch (aPerformance.play.type) {
       case "tragedy":
         result = 40000;
         if (aPerformance.audience > 30) {
@@ -44,7 +44,7 @@ function statement(invoice, plays) {
         result += 300 * aPerformance.audience;
         break;
       default:
-        throw new Error(`unknown type: ${play.type}`);
+        throw new Error(`unknown type: ${aPerformance.play.type}`);
     }
     return result;
   }
@@ -52,7 +52,7 @@ function statement(invoice, plays) {
   function volumeCredits(aPerformance) {
     let result = 0;
     result += Math.max(aPerformance.audience - 30, 0);
-    if ("comedy" === playFor(aPerformance).type)
+    if ("comedy" === aPerformance.play.type)
       result += Math.floor(aPerformance.audience / 5);
     return result;
   }
@@ -85,7 +85,7 @@ function statement(invoice, plays) {
     let result = `Statement for ${data.customer}\n`;
 
     for (let aPerformance of data.performances) {
-      result += ` ${playFor(aPerformance).name}: ${usd(
+      result += ` ${aPerformance.play.name}: ${usd(
         amountfor(aPerformance)
       )} (${aPerformance.audience} seats)\n`;
     }
@@ -111,7 +111,7 @@ function statement(invoice, plays) {
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
   }
-  
+
 }
 
 module.exports = statement;
