@@ -96,6 +96,7 @@ function statement(invoice, plays) {
   }
   function statement(invoice, plays) {
     const statementData = {}
+    statementData.customer = invoice.customer
     return renderPlainText(statmentData, invoice, plays)
   }
 }
