@@ -81,17 +81,23 @@ function statement(invoice, plays) {
     return result;
   }
 
-  let result = `Statement for ${invoice.customer}\n`;
+  function renderPlainText(data, invoice, plays) {
+    let result = `Statement for ${invoice.customer}\n`;
 
-  for (let aPerformance of invoice.performances) {
-    result += ` ${playFor(aPerformance).name}: ${usd(
-      amountfor(aPerformance)
-    )} (${aPerformance.audience} seats)\n`;
+    for (let aPerformance of invoice.performances) {
+      result += ` ${playFor(aPerformance).name}: ${usd(
+        amountfor(aPerformance)
+      )} (${aPerformance.audience} seats)\n`;
+    }
+
+    result += `Amount owed is ${usd(totalAmount())}\n`;
+    result += `You earned ${totalVolumeCredits()} credits\n`;
+    return result;
   }
-
-  result += `Amount owed is ${usd(totalAmount())}\n`;
-  result += `You earned ${totalVolumeCredits()} credits\n`;
-  return result;
+  function statement(invoice, plays) {
+    const statementData = {}
+    return renderPlainText(statmentData, invoice, plays)
+  }
 }
 
 module.exports = statement;
