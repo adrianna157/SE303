@@ -102,9 +102,16 @@ function statement(invoice, plays) {
   }
   
   function enrichPerferomance(aPerformance) {
+    //performs a shallow copy
     const result = Object.assign({}, aPerformance);
-    return result
+    result.play = playFor(result);
+    return result;
   }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
+  
 }
 
 module.exports = statement;
