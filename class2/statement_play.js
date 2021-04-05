@@ -86,7 +86,7 @@ function statement(invoice, plays) {
 
     for (let aPerformance of data.performances) {
       result += ` ${aPerformance.play.name}: ${usd(
-        amountfor(aPerformance)
+        aPerformance.amount
       )} (${aPerformance.audience} seats)\n`;
     }
 
