@@ -82,7 +82,7 @@ function statement(invoice, plays) {
   }
 
   function renderPlainText(data, invoice, plays) {
-    let result = `Statement for ${invoice.customer}\n`;
+    let result = `Statement for ${data.customer}\n`;
 
     for (let aPerformance of invoice.performances) {
       result += ` ${playFor(aPerformance).name}: ${usd(
