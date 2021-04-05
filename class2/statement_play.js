@@ -106,6 +106,7 @@ function statement(invoice, plays) {
     const result = Object.assign({}, aPerformance);
     result.play = playFor(result);
     result.amount = amountFor(result);
+    result.volumeCredits = volumeCredisFor(result);
     return result;
   }
 
