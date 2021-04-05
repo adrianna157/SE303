@@ -105,6 +105,7 @@ function statement(invoice, plays) {
     //performs a shallow copy
     const result = Object.assign({}, aPerformance);
     result.play = playFor(result);
+    result.amount = amountFor(result);
     return result;
   }
 
